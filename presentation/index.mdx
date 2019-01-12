@@ -1,0 +1,301 @@
+import {Cite, Image} from 'spectacle';
+import {DarkSlide, CodeSlide} from './slides';
+import RegularComponent from './regular-component';
+
+## Bootstrapping applications using
+# AWS Amplify
+## with
+# AWS Appsync
+
+Fullstack development
+
+---
+
+### Who am I
+
+- Peter
+- Twenty years working in software
+- Majority for small software companies
+- Majority as a technical product manager
+- Current focus is fullstack development
+
+---
+
+# Backend-as-a-Service / Serverless
+
+- Interactive software ASAP
+- Outsource what I can
+- Humans are expensive
+- (At scale, things are different) 
+
+---
+
+# Serverless
+
+- Authentication
+- Database
+- Storage
+- Functions
+- Hosting
+- APIs
+- AI / ML
+- Etc, etc
+
+---
+
+# AWS Appsync
+
+AWS managed GraphQL Service
+
+> AWS AppSync is a serverless back-end for mobile, web and enterprise applications
+
+---
+
+# AWS Amplify Framework
+
+- Evolution of AWS Mobile Hub
+- Amazon's answer to Google Firebase
+- Make it easy for application (front-end) developers to use (consume) back-end resources
+
+> The foundation for your cloud-powered mobile & web apps
+
+---
+
+### Amplify Categories
+
+- Analytics
+- API (GraphQL via <strong>AppSync</strong> and REST)
+- Authentication
+- Functions
+- Hosting
+- Storage
+- Notifications
+
+---
+
+### Using Amplify
+
+1. AWS Account
+2. Amplify CLI
+3. Docs and libs
+
+---
+
+### Amplify Docs and Libs
+
+- iOS - Swift
+- Android - Java
+- Web - JavaScript - <strong>React</strong>, Angular, Ionic, Vue
+- React Native
+
+---
+
+# Demo
+
+-----
+
+Amplify CLI installed and configured
+
+---
+
+### Demo #1
+
+-----
+
+create-react-app
+
+npm install aws-amplify aws-amplify-react
+
+amplify init
+
+---
+
+### Demo #2
+
+-----
+
+after amplify init completes
+
+---
+
+### Result - Local
+
+- amplify/backend folder - current local config
+- amplify/#current-cloud-backend folder - last push'ed config
+- amplify/.config folder - project settings
+- .amplifyrc file - project specific config
+
+---
+
+### Result - Remote
+
+- 2 new roles (auth and unauth)
+- S3 bucket
+- Cloudformation Stack
+
+---
+
+### AppSync Integration
+
+1. Setup API endpoint with authentication and schema in client
+2. Generate JavaScript (TypeScript) code from schema
+3. Write app code to run queries, mutations and subscriptions
+
+---
+
+### Demo #3
+
+-----
+
+amplify add api
+
+---
+
+### Leveraging the Amplify - AppSync Integration
+
++ Edit schema as desired in client
++ Update back-end via CLI
+
+
+  - amplify push
+  - amplify publish
+  - amplify codegen
+  - amplify api gql-compile
+
+---
+
+### Demo #4
+
+-----
+
+amplify push (first time)
+
+---
+
+### Demo #5
+
+-----
+
+after amplify push comletes
+
+---
+
+### Result - Local
+
+- aws-export.js - AWS config (GraphQL endpoint, API key, etc)
+- graphql folder - schema and codegen for queries, mutations and subscriptions
+- types for Flow or TypeScript
+
+---
+
+### Result - Remote
+
+- AppSync project created
+- Lots of other stuff
+
+---
+
+# Directives
+
+- Part of schema (@)
+- @model
+- @auth
+- @connection
+- @searchable
+- @versioned
+
+---
+
+### Client Options
+
++ Amplify GraphQL client
++ AWS AppSync SDK
+
+---
+
+### Demo #6
+
+-----
+
+coding
+
+---
+
+### Demo #7
+
+-----
+
+AppSync
+
+---
+
+# Architecture
+
+![](https://docs.aws.amazon.com/appsync/latest/devguide/images/systemoverview.png)
+
+---
+
+## How it works
+
+- Resolvers "translate" GraphQL to "Data Source"
+- Translation via VTL (Apache Velocity Template Language)
+- Data Sources = DynamoDB, Lambda, ElasticSearch, Aurora, HTTP, etc
+
+---
+
+### Demo #8
+
+-----
+
+new AppSync API using AWS Lambda (as Data Source)
+
+---
+
+### Takeaways (part 1)
+
+- Nudged/pushed towards AWS DynamoDB
+- Nudged/pushed towards AWS Cognito
+- Teams may struggle with Amplify
+- Be ready to edit .gitignore
+- If you just want GraphQL API - don’t start with Amplify 
+
+---
+
+### Takeaways (part 2)
+
+- Amplify/Appsync - ownership matters
+- If you already have Resolvers (or a backend) Appsync may not be a good fit
+- Client side codegen is probably not that valuable
+- Be aware of codegen goodies (filter, limit, nextToken)
+
+---
+
+### Trade-off
+
+- Quick to Production
+- Control (flexibility, understandability)
+
+---
+
+### Other Serverless Options
+
+- AWS only big 3 doing GraphQL as a Service
+- Google Firebase
+- Prisma Cloud
+- Others...
+
+---
+
+### Final Thoughts
+
+- Generous free tiers
+- Consider for prototyping
+- Reduce decision fatigue
+
+---
+
+Thank you!
+
+@peter_dyer
+
+fullsapps.com
