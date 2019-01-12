@@ -67,9 +67,3 @@ If you want to deploy the slideshow to surge, run
 ```bash
 npm run deploy
 ```
-
----
-
-## Spectacle Docs
-
-https://github.com/FormidableLabs/spectacle
