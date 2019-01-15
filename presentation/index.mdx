@@ -1,4 +1,4 @@
-import {Cite, Image} from 'spectacle';
+import {Cite, Image, List, ListItem} from 'spectacle';
 import {DarkSlide, CodeSlide} from './slides';
 import RegularComponent from './regular-component';
 
@@ -94,40 +94,22 @@ AWS managed GraphQL Service
 
 -----
 
-Amplify CLI installed and configured
+Prereq's
+- Amplify CLI installed and configured
+- React project created, libraries installed and amplify init
 
 ---
 
-### Demo #1
-
------
-
-create-react-app
-
-npm install aws-amplify aws-amplify-react
-
-amplify init
-
----
-
-### Demo #2
-
------
-
-after amplify init completes
-
----
-
-### Result - Local
+### Current State - Local
 
 - amplify/backend folder - current local config
 - amplify/#current-cloud-backend folder - last push'ed config
 - amplify/.config folder - project settings
-- .amplifyrc file - project specific config
+- .amplifyrc file - amplify project specific config
 
 ---
 
-### Result - Remote
+### Current State - Remote
 
 - 2 new roles (auth and unauth)
 - S3 bucket
@@ -143,11 +125,13 @@ after amplify init completes
 
 ---
 
-### Demo #3
+### Demo
 
 -----
 
 amplify add api
+
+amplify push
 
 ---
 
@@ -159,24 +143,16 @@ amplify add api
 
   - amplify push
   - amplify publish
-  - amplify codegen
+  - amplify codegen (statements, types)
   - amplify api gql-compile
 
 ---
 
-### Demo #4
+### Demo
 
 -----
 
-amplify push (first time)
-
----
-
-### Demo #5
-
------
-
-after amplify push comletes
+after amplify push completes
 
 ---
 
@@ -195,6 +171,22 @@ after amplify push comletes
 
 ---
 
+### Demo
+
+-----
+
+write some code
+
+---
+
+### A word about auth
+
+- amplify add auth
+- Creates Cognito User and Identiy Pools
+- can be integrated with API
+
+---
+
 # Directives
 
 - Part of schema (@)
@@ -206,6 +198,62 @@ after amplify push comletes
 
 ---
 
+export default CodeSlide
+
+```javascript
+type Blog @model {
+  id: ID!
+  name: String!
+  posts: [Post] @connection(name: "BlogPosts")
+}
+type Post @model {
+  id: ID!
+  title: String!
+  blog: Blog @connection(name: "BlogPosts")
+  comments: [Comment] @connection(name: "PostComments")
+}
+type Comment @model {
+  id: ID!
+  content: String
+  post: Post @connection(name: "PostComments")
+}
+```
+
+---
+
+export default CodeSlide
+
+```javascript
+type PrivateNote
+  @model
+  @auth(rules: [{allow: owner}])
+{
+  id: ID!
+  content: String!
+}
+```
+
+---
+
+export default CodeSlide
+
+```javascript
+type Task 
+  @model 
+  @auth(rules: [
+      {allow: groups, groups: ["Managers"], queries: null, mutations: [create, update, delete]},
+      {allow: groups, groups: ["Employees"], queries: [get, list], mutations: null}
+    ])
+{
+  id: ID!
+  title: String!
+  description: String
+  status: String
+}
+```
+
+---
+
 ### Client Options
 
 + Amplify GraphQL client
@@ -213,41 +261,27 @@ after amplify push comletes
 
 ---
 
-### Demo #6
+# AppSync
 
------
+### Architecture
 
-coding
-
----
-
-### Demo #7
-
------
-
-AppSync
-
----
-
-# Architecture
-
-![](https://docs.aws.amazon.com/appsync/latest/devguide/images/systemoverview.png)
+<Image src="https://docs.aws.amazon.com/appsync/latest/devguide/images/systemoverview.png" />
 
 ---
 
 ## How it works
 
 - Resolvers "translate" GraphQL to "Data Source"
-- Translation via VTL (Apache Velocity Template Language)
 - Data Sources = DynamoDB, Lambda, ElasticSearch, Aurora, HTTP, etc
+- Translation via VTL (Apache Velocity Template Language)
 
 ---
 
-### Demo #8
+### Demo
 
 -----
 
-new AppSync API using AWS Lambda (as Data Source)
+AppSync API using AWS Lambda
 
 ---
 
@@ -264,24 +298,11 @@ new AppSync API using AWS Lambda (as Data Source)
 ### Trade-off
 
 - Quick to Production
+- vs
 - Control (flexibility, understandability)
 
----
 
-### Other Serverless Options
-
-- AWS only big 3 doing GraphQL as a Service
-- Google Firebase
-- Prisma Cloud
-- Others...
-
----
-
-### Final Thoughts
-
-- Generous free tiers
-- Consider for prototyping
-- Reduce decision fatigue
+- Prototyping?
 
 ---
 
