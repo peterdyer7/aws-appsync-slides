@@ -1,4 +1,4 @@
-# Spectacle Boilerplate
+# Built using Spectacle Boilerplate
 
 ## Contents
 
@@ -67,3 +67,8 @@ If you want to deploy the slideshow to surge, run
 ```bash
 npm run deploy
 ```
+
+## Useful URLs
+
+Presenter mode - http://localhost:3000/#/0?presenter (open a second browser to http://localhost:3000/#/ and it will follow the presenter)
+PDF export - http://localhost:3000/#/?export

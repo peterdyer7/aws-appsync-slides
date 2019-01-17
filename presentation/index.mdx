@@ -135,19 +135,6 @@ amplify push
 
 ---
 
-### Leveraging the Amplify - AppSync Integration
-
-+ Edit schema as desired in client
-+ Update back-end via CLI
-
-
-  - amplify push
-  - amplify publish
-  - amplify codegen (statements, types)
-  - amplify api gql-compile
-
----
-
 ### Demo
 
 -----
@@ -176,6 +163,13 @@ after amplify push completes
 -----
 
 write some code
+
+---
+
+### Client Options
+
++ Amplify GraphQL client
++ AWS AppSync SDK
 
 ---
 
@@ -254,13 +248,6 @@ type Task
 
 ---
 
-### Client Options
-
-+ Amplify GraphQL client
-+ AWS AppSync SDK
-
----
-
 # AppSync
 
 ### Architecture
@@ -271,8 +258,8 @@ type Task
 
 ## How it works
 
-- Resolvers "translate" GraphQL to "Data Source"
-- Data Sources = DynamoDB, Lambda, ElasticSearch, Aurora, HTTP, etc
+- Resolvers "translate" GraphQL to do something with a "Data Source"
+- Data Sources = DynamoDB, Lambda, ElasticSearch, Aurora, HTTP
 - Translation via VTL (Apache Velocity Template Language)
 
 ---
@@ -297,9 +284,9 @@ AppSync API using AWS Lambda
 
 ### Trade-off
 
-- Quick to Production
+- Serverless - Quick to Production
 - vs
-- Control (flexibility, understandability)
+- Traditional - Control
 
 
 - Prototyping?
