@@ -1,6 +1,8 @@
-import {Cite, Image, List, ListItem} from 'spectacle';
+import {Cite, Image, List, ListItem, Text} from 'spectacle';
 import {DarkSlide, CodeSlide} from './slides';
 import RegularComponent from './regular-component';
+
+import systemoverview from '../assets/systemoverview.png';
 
 ## Bootstrapping applications using
 # AWS Amplify
@@ -24,13 +26,13 @@ Fullstack development
 # Backend-as-a-Service / Serverless
 
 - Interactive software ASAP
-- Offload/outsource what I can
+- Leverage the work of others
 - Humans are expensive
 - (At scale, things are different) 
 
 ---
 
-# Serverless
+# My view of Serverless
 
 - Authentication
 - Database
@@ -45,7 +47,7 @@ Fullstack development
 
 # AWS Appsync
 
-AWS managed GraphQL Service
+AWS GraphQL Service
 
 > AWS AppSync is a serverless back-end for mobile, web and enterprise applications
 
@@ -169,7 +171,7 @@ write some code
 ### Client Options
 
 + Amplify GraphQL client
-+ AWS AppSync SDK
++ AWS AppSync (SDK) / Apollo client
 
 ---
 
@@ -252,7 +254,8 @@ type Task
 
 ### Architecture
 
-<Image src="https://docs.aws.amazon.com/appsync/latest/devguide/images/systemoverview.png" />
+<Image src={systemoverview} />
+<Text textSize="16px">Source: https://docs.aws.amazon.com/appsync/latest/devguide/system-overview-and-architecture.html</Text>
 
 ---
 
@@ -268,7 +271,7 @@ type Task
 
 -----
 
-AppSync API using AWS Lambda
+AWS Console - AppSync
 
 ---
 
